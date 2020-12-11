@@ -6,6 +6,7 @@ package _06_duelling_buttons;
 
 public class DuelingButtonsRunner {
 	public static void main(String[] args) {
-		new DuelingButtons().run();
+		DuelingButtons db = new DuelingButtons();
+		db.run();
 	}
 }
