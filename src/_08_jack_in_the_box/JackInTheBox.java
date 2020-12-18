@@ -12,48 +12,44 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class JackInTheBox {
+public class JackInTheBox implements ActionListener {
 	int a = 0;
 	
 	public static void main(String[] args) {
 		
 		 JackInTheBox jb = new JackInTheBox();
-		jb.showPicture("jackInTheBox.png");
+		jb.showButton();
 		 
 	}
+	
+	public void showButton() {
+		JButton button = new JButton();
+		 button.setText("Suprise!");
+		 JFrame frame2 = new JFrame();
+		 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 frame2.add(button);
+		 frame2.setVisible(true);
+		 button.addActionListener(this);
+	}
+	 
+	
 	public void showPicture(String fileName) {
 	     try {
 	          JLabel imageLabel = createLabelImage(fileName);
 	          JFrame frame = new JFrame();
-	          JFrame frame2 = new JFrame();
-	 		 JButton button = new JButton();
-	 		 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	 		 button.setText("Suprise!");
-	 		 frame2.add(button);
-	 		 button.setText("Suprise!");
-	         
-	          frame2.setVisible(true);
-	         
-	         
+	         frame.add(imageLabel);
+	          frame.setVisible(true);
 	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	         
 	          frame.add(imageLabel);
-	         
-	         //add mouse listener
-	          frame.setVisible(false);
+	          frame.setVisible(true);
+	        
+	          
 	          frame.pack();
-	          if (a == 4) {
-	   		   frame.setVisible(true);
-	 		 }
 	     } catch (Exception e) {
 	          e.printStackTrace();
 	     }
 	}
-	 public void actionPerformed(ActionEvent arg0, String fileName) {
-		
-		 a++;
-		
-	 }
+	
 	private JLabel createLabelImage(String fileName) {
 	     try {
 	          URL imageURL = getClass().getResource(fileName);
@@ -69,5 +65,13 @@ public class JackInTheBox {
 	          System.err.println("Could not find image " + fileName);
 	          return new JLabel();
 	     }
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		 a++;
+		 if (a > 4) {
+	   		   showPicture("jackInTheBox.png");
+	 		 }
 	}
 }
