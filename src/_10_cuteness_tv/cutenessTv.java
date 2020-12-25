@@ -30,19 +30,19 @@ void showGui() {
 	c.addActionListener(this);
 	frame.pack();
 }
-void showDucks() {
+static void showDucks() {
      playVideo("https://www.youtube.com/watch?v=MtN1YnoL46Q");
 }
 
-void showFrog() {
+static void showFrog() {
      playVideo("https://www.youtube.com/watch?v=cBkWhkAZ9ds");
 }
 
-void showFluffyUnicorns() {
+static void showFluffyUnicorns() {
      playVideo("https://www.youtube.com/watch?v=a-xWhG4UU_Y");
 }
 
-void playVideo(String videoID) {
+static void playVideo(String videoID) {
      
      // Workaround for Linux because "Desktop.getDesktop().browse()" doesn't
      //work on some Linux implementations
@@ -61,7 +61,19 @@ void playVideo(String videoID) {
 }
 @Override
 public void actionPerformed(ActionEvent arg0) {
-	//detect which button is pressed
-	
+	System.out.println("Button Pressed");
+	JButton ButtonPressed = (JButton) arg0.getSource();
+	if (ButtonPressed == a) {
+		showDucks();
+		System.out.println("Button 1");
+	}
+	else if (ButtonPressed == b) {
+		showFrog();
+		System.out.println("Button 2");
+	}
+	else {
+		showFluffyUnicorns();
+		System.out.println("Button 3");
+	}
 }
 }
