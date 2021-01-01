@@ -1,0 +1,33 @@
+float x = 4;
+float y = 4;
+
+void setup() {
+  size(1000, 1000);
+    background(0);
+}
+void draw() {
+ 
+  makeMagical();
+  for(int i = 0; i < 301; i++) {
+     ellipse(x, y, 2, 2);
+   x = getWormX(i);
+   y = getWormY(i);
+    fill(255, 0, 0);
+  }
+}
+float frequency = 0.01;
+    float noiseInterval = 1;
+
+    void makeMagical() {
+        fill( 0, 0, 0, 10 );
+        rect(0, 0, width, height);
+        noStroke();
+    }
+
+    float getWormX(int i) {
+        return map(noise(i*noiseInterval + frameCount * frequency), 0, 1, 0, width);
+    }
+
+    float getWormY(int i) {
+        return map(noise(i*noiseInterval+1 + frameCount * frequency), 0, 1, 0, height);
+    }
